@@ -5,7 +5,7 @@
         <target>docs/parser</target>
     </parser>
     <transformer>
-        <target>docs/transformer</target>
+        <target>../fox_framework_docs</target>
     </transformer>
     <transformations>
         <template name="responsive-twig" />
