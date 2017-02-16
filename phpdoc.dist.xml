@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>Fox framework</title>
+    <parser>
+        <target>docs/parser</target>
+    </parser>
+    <transformer>
+        <target>docs/transformer</target>
+    </transformer>
+    <transformations>
+        <template name="responsive-twig" />
+    </transformations>
+    <files>
+        <directory>public</directory>
+        <ignore>index.php</ignore>
+        <ignore>Config/*</ignore>
+        <ignore>App/Views/*</ignore>
+    </files>
+</phpdoc>
