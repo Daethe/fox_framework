@@ -40,11 +40,12 @@ class Assets {
 	 * @param $type
 	 * @return string
 	 */
-    public function dump($type) {
+    public function dump($type = '') {
         $type = strtolower($type);
         if ($type === 'css' || $type === 'js') {
             return $this->dumpList($type, $this->{$type});
         }
+		return null;
     }
 
 	/**

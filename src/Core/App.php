@@ -3,6 +3,7 @@
 namespace Core;
 
 use Core\Assets\Assets;
+use Core\Config\Config;
 use Core\Database\Idiorm;
 use Core\Web\Router\RouterConfig;
 use Core\Web\Router\Router;
@@ -50,8 +51,6 @@ class App {
         require __DIR__ . '/../App/Autoloader.php';
         \App\Autoloader::register();
 
-        self::$_config = require(ROOT . '/Config/config.php');
-        if (self::$_config['useDatabase']) { self::setupDB(); }
         self::getRouter();
     }
 
@@ -72,8 +71,30 @@ class App {
 	 * @return mixed Value of the wanted alias
 	 */
     public static function getAlias($alias) {
-        return self::$_config['alias'][$alias];
+        return self::getConfig()->get('alias')[$alias];
     }
+
+	/**
+	 * Build the configuration for use
+	 * @return \Core\Application|mixed Application configuration
+	 */
+	public static function getConfig() {
+		if (empty(self::$_config)) {
+			self::$_config = new Config();
+		}
+		return self::$_config;
+	}
+
+	/**
+	 * Setup the database if not setted up.
+	 * @return \Core\Application Database instance
+	 */
+	public static function getDb() {
+		if (empty(self::$_dbInstance)) {
+			self::setupDB();
+		}
+		return self::$_dbInstance;
+	}
 
 	/**
 	 * Create an instance of the application if not exists
@@ -92,7 +113,7 @@ class App {
 	 */
     public static function getRouter() {
         if (empty(self::$_routerInstance)) {
-            self::$_routerInstance = Router::parseConfig(self::$_config['router']);
+            self::$_routerInstance = Router::parseConfig(self::getConfig()->get('router'));
             self::$_routerInstance->matchCurrentRequest();
         }
         return self::$_routerInstance;
@@ -103,7 +124,7 @@ class App {
 	 * This one follow database configuration file.
 	 */
     public static function setupDB() {
-        $config = self::$_config['database'];
+        $config = self::getConfig()->get('database');
 
         if (empty(self::$_dbInstance)) {
             switch($config['type']) {
