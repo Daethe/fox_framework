@@ -1,3 +1,5 @@
 docs
 logs
 .idea/workspace.xml
+vendor
+composer.lock
