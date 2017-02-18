@@ -6,7 +6,7 @@
  * @see https://github.com/php-fig/http-message-util
  */
 
-namespace Core\Fig\Http\Message;
+namespace Core\Web\Request;
 /**
  * Defines constants for common HTTP request methods.
  *
@@ -26,8 +26,7 @@ namespace Core\Fig\Http\Message;
  *
  * @package Core\Fig\Http\Message
  */
-interface RequestMethodInterface
-{
+interface RequestMethod {
     const METHOD_HEAD    = 'HEAD';
     const METHOD_GET     = 'GET';
     const METHOD_POST    = 'POST';
