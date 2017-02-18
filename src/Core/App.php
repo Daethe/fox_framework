@@ -5,7 +5,6 @@ namespace Core;
 use Core\Assets\Assets;
 use Core\Config\Config;
 use Core\Database\Idiorm;
-use Core\Web\Router\RouterConfig;
 use Core\Web\Router\Router;
 
 /**
