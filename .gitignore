@@ -1,5 +1,13 @@
+# PHPdoc
 docs
+
+# Own configuration
 logs
 .idea/workspace.xml
+
+# Composer
 vendor
 composer.lock
+
+# PHPUnit
+coverage
