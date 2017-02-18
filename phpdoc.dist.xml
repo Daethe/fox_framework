@@ -11,7 +11,7 @@
         <template name="responsive-twig" />
     </transformations>
     <files>
-        <directory>public</directory>
+        <directory>src</directory>
         <ignore>index.php</ignore>
         <ignore>Config/*</ignore>
         <ignore>App/Views/*</ignore>
