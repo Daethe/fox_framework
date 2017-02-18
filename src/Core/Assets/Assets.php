@@ -7,8 +7,6 @@
 
 namespace Core\Assets;
 
-use \Core\Web\Url;
-
 /**
  * Class Assets
  * @package Core\Assets
@@ -18,32 +16,38 @@ class Assets {
 	/**
 	 * @var string Application assets path
 	 */
-    public $assetsPath = 'App/Assets/';
+	public static $assetsPath = 'App/Assets/';
 
 	/**
-	 * @var array CSS file used in application
+	 * @type \Core\Assets\AssetsCss CSS Assets instance
 	 */
-    protected $css = [];
+	private $cssInstance;
 
 	/**
-	 * @var array JS file used in application
+	 * @type \Core\Assets\AssetsJs JS Assets instance
 	 */
-    protected $js = [];
+	private $jsInstance;
 
 	/**
 	 * Assets constructor
 	 */
-    public function __construct() {}
+	public function __construct() {
+		$this->cssInstance = new AssetsCss();
+		$this->jsInstance = new AssetsJs();
+	}
 
 	/**
 	 * Dump as a DOM all listed file
+	 * Plain value listed at the end of dom
+	 *
 	 * @param $type
+	 *
 	 * @return string
 	 */
     public function dump($type = '') {
         $type = strtolower($type);
         if ($type === 'css' || $type === 'js') {
-            return $this->dumpList($type, $this->{$type});
+			return $this->{$type . 'Instance'}->dump();
         }
 		return null;
     }
@@ -55,57 +59,51 @@ class Assets {
 	 */
     public function registerFile($type, $file) {
         $type = strtolower($type);
-        if ($type === 'css') {
-            $this->registerCssFile($file);
-        } elseif ($type === 'js') {
-            $this->registerJsFile($file);
+		if ($type === 'css' || $type === 'js') {
+			$this->{$type . 'Instance'}->registerFile($file);
         }
-    }
+	}
+
+	// ----------------------- //
+	// -- CSS  REGISTRATION -- //
+	// ----------------------- //
 
 	/**
 	 * Register a CSS file
 	 * @param $cssFile
 	 */
     public function registerCssFile($cssFile) {
-        $this->css = array_merge($this->css, $this->checkArray($cssFile));
-    }
+		$this->cssInstance->registerFile($cssFile);
+	}
+
+	/**
+	 * Register a plain CSS
+	 *
+	 * @param $css
+	 */
+	public function registerCss($css) {
+		$this->cssInstance->registerPlain($css);
+	}
+
+	// ----------------------- //
+	// --- JS REGISTRATION --- //
+	// ----------------------- //
 
 	/**
 	 * Register a JS file
 	 * @param $jsFile
 	 */
     public function registerJsFile($jsFile) {
-        $this->js = array_merge($this->js, $this->checkArray($jsFile));
+		$this->jsInstance->registerFile($jsFile);
     }
 
 	/**
-	 * Check if the parameters is an array
-	 * @param $value
-	 * @return array
+	 * Register a plain JS
+	 *
+	 * @param $js
 	 */
-    private function checkArray($value) {
-        return (!is_array($value)) ? [$value] : $value;
-    }
-
-	/**
-	 * Make the list of all file inside a DOM
-	 * @param $type
-	 * @param $values
-	 * @return string
-	 */
-    private function dumpList($type, $values) {
-        $dom = '';
-        if (!empty($values)) {
-            foreach($values as $value) {
-                $path = $this->assetsPath . $type . '/' . $value;
-                if ($type === 'css') {
-                    $dom .= '<link rel="stylesheet" href="' . Url::To('assets', ['file' => $path]) . '">';
-                } else {
-                    $dom .= '<script src="' . Url::To('assets', ['file' => $path]) . '"></script>';
-                }
-            }
-        }
-        return $dom;
-    }
+	public function registerJs($js) {
+		$this->jsInstance->registerPlain($js);
+	}
 
 }
