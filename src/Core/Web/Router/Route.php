@@ -5,7 +5,7 @@
 
 namespace Core\Web\Router;
 
-use Core\Fig\Http\Message\RequestMethodInterface;
+use Core\Web\Request\RequestMethod;
 
 /**
  * Class Route
@@ -24,10 +24,10 @@ class Route {
 	 * @var string[]
 	 */
     private $methods = [
-        RequestMethodInterface::METHOD_GET,
-        RequestMethodInterface::METHOD_POST,
-        RequestMethodInterface::METHOD_PUT,
-        RequestMethodInterface::METHOD_DELETE
+        RequestMethod::METHOD_GET,
+        RequestMethod::METHOD_POST,
+        RequestMethod::METHOD_PUT,
+        RequestMethod::METHOD_DELETE
     ];
 
 	/**

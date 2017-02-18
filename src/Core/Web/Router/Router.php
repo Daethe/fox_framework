@@ -6,7 +6,7 @@
 namespace Core\Web\Router;
 
 use \Exception;
-use \Fig\Http\Message\RequestMethodInterface;
+use Core\Web\Request\RequestMethod;
 
 /**
  * Routing class to match request URL's against given routes and map them to a controller action.
@@ -62,7 +62,7 @@ class Router {
         $requestMethod = (
             isset($_POST['_method'])
             && ($_method = strtoupper($_POST['_method']))
-            && in_array($_method, array(RequestMethodInterface::METHOD_PUT, RequestMethodInterface::METHOD_DELETE), true)
+            && in_array($_method, array(RequestMethod::METHOD_PUT, RequestMethod::METHOD_DELETE), true)
         ) ? $_method : $_SERVER['REQUEST_METHOD'];
         $requestUrl = $_SERVER['REQUEST_URI'];
         // strip GET variables from URL
@@ -82,7 +82,7 @@ class Router {
 	 *
 	 * @return bool|Route
 	 */
-    public function match($requestUrl, $requestMethod = RequestMethodInterface::METHOD_GET) {
+    public function match($requestUrl, $requestMethod = RequestMethod::METHOD_GET) {
         $currentDir = dirname($_SERVER['SCRIPT_NAME']);
         foreach ($this->routes->all() as $routes) {
             // compare server request method with route's allowed http methods
