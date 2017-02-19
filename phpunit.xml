@@ -22,5 +22,6 @@
     <php>
         <server name="REQUEST_METHOD" value="GET"/>
         <server name="REQUEST_URI" value="http://localhost"/>
+        <server name="HTTP_HOST" value="localhost"/>
     </php>
 </phpunit>
