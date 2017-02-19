@@ -11,13 +11,4 @@ namespace Core\Controller;
  * Class AssetsController
  * @package Core\Controller
  */
-class AssetsController extends Controller {
-
-	/**
-	 * @param $file
-	 */
-    public function dump($file) {
-        var_dump($file);
-    }
-
-}
+class AssetsController extends Controller {}

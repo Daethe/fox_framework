@@ -134,15 +134,6 @@ class Route {
     }
 
 	/**
-	 * Route action getter
-	 *
-	 * @return mixed Route action
-	 */
-    public function getAction() {
-        return $this->action;
-    }
-
-	/**
 	 * Route name getter
 	 *
 	 * @return mixed|null|string Route name

@@ -103,10 +103,12 @@ class Router {
                 continue;
             }
 
-            for($i = 1; $i < count($matches); $i++) {
-                $matches[$i-1] = $matches[$i];
-            }
-            unset($matches[count($matches) - 1]);
+            if (count($matches) > 0) {
+				for($i = 1; $i < count($matches); $i++) {
+					$matches[$i-1] = $matches[$i];
+				}
+				unset($matches[count($matches) - 1]);
+			}
 
             $params = array();
             if (preg_match_all('/:([\w-%]+)/', $routes->getUrl(), $argument_keys)) {
