@@ -4,8 +4,8 @@ if (APP_DEV) {
     return [
         'type' => 'mysql',
         'host' => 'localhost',
-        'name' => '',
-        'username' => '',
+        'name' => 'translate_tetesbrulees',
+        'username' => 'root',
         'password' => '',
         'charset' => 'utf8'
     ];
