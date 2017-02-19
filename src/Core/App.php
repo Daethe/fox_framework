@@ -5,6 +5,8 @@ namespace Core;
 use Core\Assets\Assets;
 use Core\Config\Config;
 use Core\Database\Idiorm;
+use Core\Exception\InvalidDatabaseTypeException;
+use Core\Exception\InvalidKeyException;
 use Core\Web\Router\Router;
 
 /**
@@ -12,6 +14,10 @@ use Core\Web\Router\Router;
  * @package Core
  */
 class App {
+
+	const DB_TYPE = [
+		'mysql'
+	];
 
 	/**
 	 * @var Application instance
@@ -38,7 +44,7 @@ class App {
 	 */
     public static $assets;
 
-    private function __Construct() {}
+    public function __construct() {}
 
 	/**
 	 * Load the entire application and initialize all instance
@@ -66,10 +72,16 @@ class App {
 
 	/**
 	 * Get alias from configuration and return it
+	 *
 	 * @param $alias Wanted alias name
+	 *
 	 * @return mixed Value of the wanted alias
+	 * @throws \Core\Exception\InvalidKeyException
 	 */
     public static function getAlias($alias) {
+		if (!isset(self::getConfig()->get('alias')[$alias])) {
+			throw new InvalidKeyException('You must specify a correct key');
+		}
         return self::getConfig()->get('alias')[$alias];
     }
 
@@ -125,18 +137,14 @@ class App {
     public static function setupDB() {
         $config = self::getConfig()->get('database');
 
-        if (empty(self::$_dbInstance)) {
-            switch($config['type']) {
-                case 'mysql':
-                    Idiorm::configure('mysql:host=' . $config['host'] . ';dbname=' . $config['name'] . ';charset=' . $config['charset']);
-                    Idiorm::configure('username', $config['username']);
-                    Idiorm::configure('password', $config['password']);
-                    self::$_dbInstance = Idiorm::get_db();
-                    break;
-                default:
-                    break;
-            }
-        }
+		if (in_array($config['type'], self::DB_TYPE)) {
+			Idiorm::configure($config['type'] . ':host=' . $config['host'] . ';dbname=' . $config['name'] . ';charset=' . $config['charset']);
+			Idiorm::configure('username', $config['username']);
+			Idiorm::configure('password', $config['password']);
+			self::$_dbInstance = Idiorm::get_db();
+		} else {
+			throw new InvalidDatabaseTypeException('This type is not supported');
+		}
     }
 
 }

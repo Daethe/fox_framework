@@ -8,6 +8,8 @@
  */
 
 namespace Core\Config;
+use Core\Exception\InvalidKeyException;
+use Core\Exception\NotAnArrayException;
 
 /**
  * Class Config
@@ -19,7 +21,7 @@ class Config {
 	 * Configuration array. Contains all the configuration loaded from file
 	 * @type array|mixed
 	 */
-	private $config = [];
+	protected $config = [];
 
 	/**
 	 * Initialize all the configuration
@@ -30,17 +32,39 @@ class Config {
 
 	/**
 	 * Return the configuration from config array
+	 *
 	 * @param $key Wanted key from array
 	 *
 	 * @return mixed
-	 * @throws \Core\Config\InvalidKeyException
+	 * @throws \Core\Exception\InvalidKeyException
 	 */
 	public function get($key) {
-		try {
-			return $this->config[$key];
-		} catch(Exception $e) {
-			throw new InvalidKeyException();
+		if (!isset($this->config[$key])) {
+			throw new InvalidKeyException('Invalid key');
 		}
+		return $this->config[$key];
+	}
+
+	/**
+	 * @param $key
+	 * @param $value
+	 *
+	 * @throws \Core\Exception\InvalidKeyException
+	 */
+	public function set($key, $value) {
+		if (!isset($this->config[$key])) {
+			throw new InvalidKeyException('Invalid key');
+		}
+		if (is_array($this->config[$key]) && is_array($value)) {
+			foreach ($value as $k => $string) {
+				$this->config[$key][$k] = $string;
+			}
+		} elseif (is_array($this->config[$key]) && !is_array($value) || !is_array($this->config[$key]) && is_array($value)) {
+			throw new NotAnArrayException('You need to send an array');
+		} else {
+			$this->config[$key] = $value;
+		}
+		return true;
 	}
 
 }

@@ -61,7 +61,9 @@ class Assets {
         $type = strtolower($type);
 		if ($type === 'css' || $type === 'js') {
 			$this->{$type . 'Instance'}->registerFile($file);
+			return true;
         }
+		return false;
 	}
 
 	// ----------------------- //
