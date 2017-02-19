@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<phpunit colors="true" bootstrap="tests/bootstrap.php">
+<phpunit colors="true"
+         bootstrap="tests/bootstrap.php"
+         backupGlobals="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true">
     <testsuite name="Fox framework tests">
         <directory>./tests</directory>
     </testsuite>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/</directory>
+            <exclude>
+                <directory suffix=".php">./src/Config</directory>
+                <directory suffix=".php">./src/App</directory>
+                <file>./src/index.php</file>
+                <file>./src/Core/Autoloader.php</file>
+            </exclude>
         </whitelist>
     </filter>
+    <php>
+        <server name="REQUEST_METHOD" value="GET"/>
+        <server name="REQUEST_URI" value="http://localhost"/>
+    </php>
 </phpunit>
