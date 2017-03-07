@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Core\Assets\Assets;
+use Core\Assets\AssetsManager;
 use Core\Config\Config;
 use Core\Database\Idiorm;
 use Core\Exception\InvalidDatabaseTypeException;
@@ -40,7 +40,7 @@ class App {
     private static $_config;
 
 	/**
-	 * @var Assets object instance
+	 * @var AssetsManager instance
 	 */
     public static $assets;
 
@@ -60,12 +60,12 @@ class App {
     }
 
 	/**
-	 * Create the assets instance if not exists or return the existing one
-	 * @return Assets object instance
+	 * Create the assets manager instance if not exists or return the existing one
+	 * @return AssetsManager instance
 	 */
     public static function getAssets() {
         if (empty(self::$assets)) {
-            self::$assets = new Assets();
+            self::$assets = new AssetsManager();
         }
         return self::$assets;
     }
