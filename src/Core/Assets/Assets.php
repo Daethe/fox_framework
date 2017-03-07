@@ -1,111 +1,111 @@
 <?php
-/**
- * @link http://www.foxframework.com/
- * @copyright Copyright (c) 2017 Daethe
- * @license http://www.foxframework.com/license/
- */
 
 namespace Core\Assets;
 
-/**
- * Class Assets
- * @package Core\Assets
- */
+use Core\Exception\NotAnAssociativeArrayException;
+use Core\Exception\UnknownDirException;
+use Core\Exception\NotAStringException;
+
 class Assets {
 
 	/**
-	 * @var string Application assets path
+	 * @type string Path for current files
 	 */
-	public static $assetsPath = 'App/Assets/';
+	public $_path;
 
 	/**
-	 * @type \Core\Assets\AssetsCss CSS Assets instance
+	 * @type array Registered files
 	 */
-	private $cssInstance;
+	public $_files  = [];
 
 	/**
-	 * @type \Core\Assets\AssetsJs JS Assets instance
+	 * @type array Registered plains value
 	 */
-	private $jsInstance;
+	public $_plains = [];
 
 	/**
-	 * Assets constructor
+	 * Construct the assets with path
+	 *
+	 * @param string $path Path where is stored file
+	 *
+	 * @throws \Core\Exception\NotAStringException
+	 * @throws \Core\Exception\UnknownDirException
 	 */
-	public function __construct() {
-		$this->cssInstance = new AssetsCss();
-		$this->jsInstance = new AssetsJs();
+	public function __construct($path = '') {
+		if (is_string($path)) {
+			if (is_dir($path)) {
+				$this->_path = $path;
+			} else {
+				throw new UnknownDirException();
+			}
+		} else {
+			throw new NotAStringException();
+		}
 	}
 
 	/**
-	 * Dump as a DOM all listed file
-	 * Plain value listed at the end of dom
+	 * Register assets file to respective type [css, js]
 	 *
-	 * @param $type
-	 *
-	 * @return string
+	 * @param string $index Index of the array for the file
+	 * @param string $file File to register
 	 */
-    public function dump($type = '') {
-        $type = strtolower($type);
-        if ($type === 'css' || $type === 'js') {
-			return $this->{$type . 'Instance'}->dump();
-        }
-		return null;
-    }
-
-	/**
-	 * Register an asset file
-	 * @param $type
-	 * @param $file
-	 */
-    public function registerFile($type, $file) {
-        $type = strtolower($type);
-		if ($type === 'css' || $type === 'js') {
-			$this->{$type . 'Instance'}->registerFile($file);
-			return true;
-        }
-		return false;
-	}
-
-	// ----------------------- //
-	// -- CSS  REGISTRATION -- //
-	// ----------------------- //
-
-	/**
-	 * Register a CSS file
-	 * @param $cssFile
-	 */
-    public function registerCssFile($cssFile) {
-		$this->cssInstance->registerFile($cssFile);
+	public function register($index = '', $file = '') {
+		$this->registers([$index => $file]);
 	}
 
 	/**
-	 * Register a plain CSS
+	 * Register plain assets to respective type [css, js]
 	 *
-	 * @param $css
+	 * @param string $index Index of the array for the file
+	 * @param string $plain Plain value to register
 	 */
-	public function registerCss($css) {
-		$this->cssInstance->registerPlain($css);
+	public function registerPlain($index = '', $plain = '') {
+		$this->registersPlain([$index => $plain]);
 	}
 
-	// ----------------------- //
-	// --- JS REGISTRATION --- //
-	// ----------------------- //
-
 	/**
-	 * Register a JS file
-	 * @param $jsFile
-	 */
-    public function registerJsFile($jsFile) {
-		$this->jsInstance->registerFile($jsFile);
-    }
-
-	/**
-	 * Register a plain JS
+	 * Register multiple assets file to respective type [css, js]
 	 *
-	 * @param $js
+	 * @param array $files Associative array for registering
 	 */
-	public function registerJs($js) {
-		$this->jsInstance->registerPlain($js);
+	public function registers($files = []) {
+		$this->registration('_files', $files);
+	}
+
+	/**
+	 * Register plain assets to respective type [css, js]
+	 *
+	 * @param array $plains Associative array for registering
+	 */
+	public function registersPlain($plains = []) {
+		$this->registration('_plains', $plains);
+	}
+
+	/**
+	 * Check if array is associative
+	 *
+	 * @param array $values
+	 *
+	 * @return bool
+	 */
+	private function hasStringKeys($values = []) {
+		return count(array_filter(array_keys($values), 'is_string')) > 0;
+	}
+
+	/**
+	 * Register the file or plain content
+	 *
+	 * @param       $variable
+	 * @param array $content
+	 *
+	 * @throws \Core\Exception\NotAnAssociativeArrayException
+	 */
+	private function registration($variable, $content = []) {
+		if ($this->hasStringKeys($content)) {
+			$this->{$variable} += $content;
+		} else {
+			throw new NotAnAssociativeArrayException();
+		}
 	}
 
 }
