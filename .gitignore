@@ -3,6 +3,7 @@ docs
 
 # Own configuration
 logs
+TMP
 .idea/workspace.xml
 
 # Composer
