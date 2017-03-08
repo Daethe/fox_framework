@@ -2,6 +2,7 @@
 
 defined('APP_DEV') or define('APP_DEV', true);
 defined('ROOT') or define('ROOT', __DIR__);
+defined('TEST_FIXTURES') or define('TEST_FIXTURES', ROOT . '/Fixtures/');
 
 error_reporting(E_ALL);
 if (function_exists('date_default_timezone_set') && function_exists('date_default_timezone_get')) {
