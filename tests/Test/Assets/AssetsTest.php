@@ -2,52 +2,52 @@
 /**
  * Created by PhpStorm.
  * User: marcp
- * Date: 19/02/2017
- * Time: 01:50
+ * Date: 08/03/2017
+ * Time: 00:04
  */
 
 namespace CoreTests\Test\Assets;
 
 use Core\Assets\Assets;
+use Core\Exception\NotAnAssociativeArrayException;
+use Core\Exception\NotAStringException;
+use Core\Exception\UnknownDirException;
 
 class AssetsTest extends \PHPUnit\Framework\TestCase {
 
-	private $assetsTestInstance;
+	private $testInstance;
 
-	protected function setUp() {
-		$this->assetsTestInstance = new Assets();
-
-		$this->assetsTestInstance->registerCssFile('test.css');
-		$this->assetsTestInstance->registerJsFile('test.js');
-
-		$this->assetsTestInstance->registerCss('html{height:100%}');
-		$this->assetsTestInstance->registerJs('alert("test");');
+	public function setUp() {
 	}
 
-	public function testDumpWithCorrectType_Css() {
-		$this->assertEquals(
-			'<link rel="stylesheet" href="/' . Assets::$assetsPath . 'css/test.css"><style>html{height:100%}</style>',
-			$this->assetsTestInstance->dump('css')
-		);
+	public function testRegisterFileWithCorrectparams() {
+		$this->testInstance->register('test', 'correct.css');
+		$this->assertEquals(['test' => 'correct.css'], $this->testInstance->_files);
 	}
 
-	public function testDumpWithCorrectType_Js() {
-		$this->assertEquals(
-			'<script src="/' . Assets::$assetsPath . 'js/test.js"></script><script>alert("test");</script>',
-			$this->assetsTestInstance->dump('js')
-		);
+	public function testRegisterFileWithIncorrectParams() {
+		$this->expectException(NotAnAssociativeArrayException::class);
+		$this->testInstance->register(50, 'test.css');
 	}
 
-	public function testDumpWithIncorrectType() {
-		$this->assertEquals(null, $this->assetsTestInstance->dump());
+	public function testRegisterPlainWithCorrectparams() {
+		$this->testInstance->registerPlain('test', '.is {correct: true}');
+		$this->assertEquals(['test' => '.is {correct: true}'], $this->testInstance->_plains);
 	}
 
-	public function testRegisterFileWithCorrectType() {
-		$this->assertEquals(true, $this->assetsTestInstance->registerFile('css', 'test.css'));
+	public function testRegisterPlainWithIncorrectParams() {
+		$this->expectException(NotAnAssociativeArrayException::class);
+		$this->testInstance->registerPlain(50, '.test {wrong: key}');
 	}
 
-	public function testRegisterFileWithIncorrectType() {
-		$this->assertEquals(false, $this->assetsTestInstance->registerFile('wrong', 'test.css'));
+	public function testConstructorWithInvalidPath() {
+		$this->expectException(UnknownDirException::class);
+		$this->testInstance = new Assets('/a/wrong/path/');
 	}
 
+	public function testConstructorWithoutPathString() {
+		$this->expectException(NotAStringException::class);
+		$this->testInstance = new Assets(1);
+	}
+	
 }
