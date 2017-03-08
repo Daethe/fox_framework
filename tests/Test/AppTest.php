@@ -8,9 +8,9 @@
 
 namespace CoreTests\Test;
 
-use \Core\App as CoreApp;
-use \Core\Assets\Assets as CoreAssets;
-use \Core\Config\Config as CoreConfig;
+use Core\App as CoreApp;
+use Core\Assets\AssetsManager as CoreAssets;
+use Core\Config\Config as CoreConfig;
 use Core\Exception\InvalidDatabaseTypeException;
 use Core\Exception\InvalidKeyException;
 
@@ -23,10 +23,6 @@ class AppTest extends \PHPUnit\Framework\TestCase {
 	public function testGetAliasWithIncorrectKey() {
 		$this->expectException(InvalidKeyException::class);
 		CoreApp::getAlias('incorrectKey');
-	}
-
-	public function testGetAssets() {
-		$this->assertInstanceOf(CoreAssets::class, CoreApp::getAssets());
 	}
 
 	public function testGetConfig() {
