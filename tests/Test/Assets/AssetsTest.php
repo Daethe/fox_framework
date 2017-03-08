@@ -18,6 +18,7 @@ class AssetsTest extends \PHPUnit\Framework\TestCase {
 	private $testInstance;
 
 	public function setUp() {
+		$this->testInstance = new Assets(TEST_FIXTURES . 'assets/css/');
 	}
 
 	public function testRegisterFileWithCorrectparams() {
