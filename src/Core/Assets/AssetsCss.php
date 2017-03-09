@@ -2,7 +2,7 @@
 
 namespace Core\Assets;
 
-use Core\Exception\NotAnAssociativeArrayKeyException;
+use Core\Exception\InvalidKeyException;
 use Core\Web\Url;
 
 class AssetsCSS extends Assets {
@@ -33,13 +33,13 @@ class AssetsCSS extends Assets {
 	 * @param string $key
 	 *
 	 * @return string
-	 * @throws \Core\Exception\NotAnAssociativeArrayKeyException
+	 * @throws \Core\Exception\InvalidKeyException
 	 */
 	public function dumpOneFile($key = 'default') {
 		if (array_key_exists($key, $this->_files)) {
 			return '<link rel="stylesheet" href="' . Url::To('assets', ['file' => $this->_path . $this->_files[$key]]) . '">';
 		} else {
-			throw new NotAnAssociativeArrayKeyException();
+			throw new InvalidKeyException("Key '$key' doesn't exists in configuration array");
 		}
 	}
 
@@ -47,13 +47,13 @@ class AssetsCSS extends Assets {
 	 * @param string $key
 	 *
 	 * @return string
-	 * @throws \Core\Exception\NotAnAssociativeArrayKeyException
+	 * @throws \Core\Exception\InvalidKeyException
 	 */
 	public function dumpOnePlain($key = 'default') {
 		if (array_key_exists($key, $this->_plains)) {
 			return '<style>' . $this->_plains[$key] . '</style>';
 		} else {
-			throw new NotAnAssociativeArrayKeyException();
+			throw new InvalidKeyException("Key '$key' doesn't exists in configuration array");
 		}
 	}
 

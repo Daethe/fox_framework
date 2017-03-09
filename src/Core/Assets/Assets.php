@@ -2,7 +2,7 @@
 
 namespace Core\Assets;
 
-use Core\Exception\InvalidKeyException;
+use Core\Exception\InvalidAssociativeArrayException;
 use Core\Exception\UnknownDirException;
 use Core\Exception\NotAStringException;
 
@@ -36,10 +36,10 @@ class Assets {
 			if (is_dir($path)) {
 				$this->_path = $path;
 			} else {
-				throw new UnknownDirException();
+				throw new UnknownDirException("The following directory doesn't exists: " . $path);
 			}
 		} else {
-			throw new NotAStringException();
+			throw new NotAStringException("This is not a string, try to add double quote");
 		}
 	}
 
@@ -98,13 +98,13 @@ class Assets {
 	 * @param       $variable
 	 * @param array $content
 	 *
-	 * @throws \Core\Exception\InvalidKeyException
+	 * @throws \Core\Exception\InvalidAssociativeArrayException
 	 */
 	private function registration($variable, $content = []) {
 		if ($this->hasStringKeys($content)) {
 			$this->{$variable} += $content;
 		} else {
-			throw new InvalidKeyException();
+			throw new InvalidAssociativeArrayException("This array doesn't have any key");
 		}
 	}
 
