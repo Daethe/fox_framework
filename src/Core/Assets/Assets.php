@@ -2,7 +2,7 @@
 
 namespace Core\Assets;
 
-use Core\Exception\NotAnAssociativeArrayException;
+use Core\Exception\InvalidKeyException;
 use Core\Exception\UnknownDirException;
 use Core\Exception\NotAStringException;
 
@@ -98,13 +98,13 @@ class Assets {
 	 * @param       $variable
 	 * @param array $content
 	 *
-	 * @throws \Core\Exception\NotAnAssociativeArrayException
+	 * @throws \Core\Exception\InvalidKeyException
 	 */
 	private function registration($variable, $content = []) {
 		if ($this->hasStringKeys($content)) {
 			$this->{$variable} += $content;
 		} else {
-			throw new NotAnAssociativeArrayException();
+			throw new InvalidKeyException();
 		}
 	}
 
