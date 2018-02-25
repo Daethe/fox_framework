@@ -5,7 +5,7 @@
  * @method index()
  */
 
-namespace App\Controller;
+namespace Fox\App\Controller;
 
 /**
  * Sample controller

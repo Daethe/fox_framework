@@ -6,7 +6,7 @@
  * Time: 19:02
  */
 
-namespace CoreTests\Test\Controller;
+namespace FoxTests\Core\Test\Controller;
 
 
 use \Core\Controller\Controller;

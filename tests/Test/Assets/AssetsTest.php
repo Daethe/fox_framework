@@ -6,7 +6,7 @@
  * Time: 00:04
  */
 
-namespace CoreTests\Test\Assets;
+namespace FoxTests\Core\Test\Assets;
 
 use Core\Assets\Assets;
 use Core\Exception\NotAnAssociativeArrayException;

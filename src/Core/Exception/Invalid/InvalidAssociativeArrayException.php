@@ -6,7 +6,7 @@
  * Time: 22:54
  */
 
-namespace Core\Exception;
+namespace Fox\Core\Exception;
 
 
 class InvalidAssociativeArrayException extends \Exception {}

@@ -6,7 +6,7 @@
  * Time: 22:30
  */
 
-namespace Core\Exception;
+namespace Fox\Core\Exception;
 
 
 class NotAnArrayException extends \Exception {}

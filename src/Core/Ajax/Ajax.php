@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2017 Daethe
  * @license http://www.foxframework.com/license/
  */
-namespace Core\Ajax;
+namespace Fox\Core\Ajax;
 
 /**
  * Handle the Ajax request

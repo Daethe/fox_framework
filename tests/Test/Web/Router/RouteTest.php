@@ -6,7 +6,7 @@
  * Time: 18:43
  */
 
-namespace CoreTests\Test\Web\Router;
+namespace FoxTests\Core\Test\Web\Router;
 
 
 use Core\Web\Router\Route;

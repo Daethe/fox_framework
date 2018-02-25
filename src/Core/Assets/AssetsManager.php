@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Assets;
+namespace Fox\Core\Assets;
 
 class AssetsManager {
 
@@ -24,7 +24,7 @@ class AssetsManager {
 	/**
 	 * Get instance of AssetsCSS
 	 *
-	 * @return \Core\Assets\AssetsCss
+	 * @return \Fox\Core\Assets\AssetsCss
 	 */
 	public function CSS() {
 		return $this->_cssInstance;
@@ -33,7 +33,7 @@ class AssetsManager {
 	/**
 	 * Get instance of AssetsJS
 	 *
-	 * @return \Core\Assets\AssetsJS
+	 * @return \Fox\Core\Assets\AssetsJS
 	 */
 	public function JS() {
 		return $this->_jsInstance;

@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreTests\Fixtures;
+namespace FoxTests\Core\Fixtures;
 
 final class SomeController {
 

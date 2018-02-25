@@ -3,10 +3,10 @@
  * Routing class to match request URL's against given routes and map them to a controller action.
  */
 
-namespace Core\Web\Router;
+namespace Fox\Core\Web\Router;
 
 use \Exception;
-use Core\Web\Request\RequestMethod;
+use Fox\Core\Web\Request\RequestMethod;
 
 /**
  * Routing class to match request URL's against given routes and map them to a controller action.

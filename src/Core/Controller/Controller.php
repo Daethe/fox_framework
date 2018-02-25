@@ -12,7 +12,7 @@
  * @license http://www.foxframework.com/license/
  */
 
-namespace Core\Controller;
+namespace Fox\Core\Controller;
 
 /**
  * Main application Controller

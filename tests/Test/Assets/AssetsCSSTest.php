@@ -6,7 +6,7 @@
  * Time: 23:29
  */
 
-namespace CoreTests\Test\Assets;
+namespace FoxTests\Core\Test\Assets;
 
 use Core\Assets\AssetsCSS;
 use Core\Exception\NotAnAssociativeArrayKeyException;

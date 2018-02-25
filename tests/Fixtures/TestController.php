@@ -6,7 +6,7 @@
  * Time: 19:06
  */
 
-namespace CoreTests\Fixtures;
+namespace FoxTests\Core\Fixtures;
 
 
 use Core\Controller\Controller;

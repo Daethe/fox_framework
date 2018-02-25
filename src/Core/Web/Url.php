@@ -1,9 +1,9 @@
 <?php
 
-namespace Core\Web;
+namespace Fox\Core\Web;
 
-use \Core\App;
-use Core\Web\Server\Server;
+use \Fox\Core\App;
+use Fox\Core\Web\Server\Server;
 
 /**
  * Used for complete working of router class inside the view

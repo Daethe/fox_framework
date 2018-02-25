@@ -7,9 +7,9 @@
  * @license http://www.foxframework.com/license/
  */
 
-namespace Core\Config;
-use Core\Exception\InvalidKeyException;
-use Core\Exception\NotAnArrayException;
+namespace Fox\Core\Config;
+use Fox\Core\Exception\InvalidKeyException;
+use Fox\Core\Exception\NotAnArrayException;
 
 /**
  * Class Config
@@ -36,7 +36,7 @@ class Config {
 	 * @param $key Wanted key from array
 	 *
 	 * @return mixed
-	 * @throws \Core\Exception\InvalidKeyException
+	 * @throws \Fox\Core\Exception\InvalidKeyException
 	 */
 	public function get($key) {
 		if (!isset($this->config[$key])) {
@@ -49,7 +49,7 @@ class Config {
 	 * @param $key
 	 * @param $value
 	 *
-	 * @throws \Core\Exception\InvalidKeyException
+	 * @throws \Fox\Core\Exception\InvalidKeyException
 	 */
 	public function set($key, $value) {
 		if (!isset($this->config[$key])) {

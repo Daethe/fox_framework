@@ -6,7 +6,7 @@
  * Time: 19:06
  */
 
-namespace CoreTests\Test\Assets;
+namespace FoxTests\Core\Test\Assets;
 
 
 use Core\Assets\AssetsCSS;

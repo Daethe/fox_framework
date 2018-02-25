@@ -6,7 +6,7 @@
  * Time: 22:42
  */
 
-namespace Core\Exception;
+namespace Fox\Core\Exception;
 
 
 class NotAStringException extends \Exception {}

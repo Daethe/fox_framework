@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Web\Server;
+namespace Fox\Core\Web\Server;
 
 
 class Server {
