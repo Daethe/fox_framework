@@ -1,16 +1,15 @@
 <?php
 /**
- * Core class autoloader
+ * Class autoloader
  *
  * @method register()
  * @method autoload($class)
  */
 
-namespace Core;
+namespace Fox;
 
 /**
- * Core class autoloader
- * @package Core
+ * Class autoloader
  */
 class Autoloader {
 
