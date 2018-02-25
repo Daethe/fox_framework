@@ -3,9 +3,9 @@
  * Auxiliary Config class, to parse a php file.
  */
 
-namespace Core\Web\Router;
+namespace Fox\Core\Web\Router;
 
-use Core\Exception\InvalidArgumentException;
+use Fox\Core\Exception\InvalidArgumentException;
 
 /**
  * Auxiliary Config class, to parse a php file.

@@ -6,7 +6,7 @@
  * @method __construct()
  */
 
-namespace App\Controller;
+namespace Fox\App\Controller;
 
 /**
  * Main application controller
@@ -15,7 +15,7 @@ namespace App\Controller;
  * @package App\Controller
  * @since 0.1
  */
-class AppController extends \Core\Controller\Controller {
+class AppController extends \Fox\Core\Controller\Controller {
 
 	/**
 	 * @var string Layout used by the controller

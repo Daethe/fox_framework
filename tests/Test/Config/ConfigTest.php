@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreTests\Test\Config;
+namespace FoxTests\Core\Test\Config;
 
 use Core\Config\Config;
 use Core\Exception\InvalidKeyException;

@@ -1,5 +1,5 @@
 <?php
-use \App\App;
+use \Fox\App\App;
 ?>
 
 <!DOCTYPE html>

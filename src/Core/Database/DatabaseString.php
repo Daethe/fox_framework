@@ -6,9 +6,9 @@
  * Time: 00:56
  */
 
-namespace Core\Database;
+namespace Fox\Core\Database;
 
-use Core\Exception\DatabaseStringException;
+use Fox\Core\Exception\DatabaseStringException;
 
 class DatabaseString {
 

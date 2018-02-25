@@ -1,13 +1,13 @@
 <?php
 
-namespace Core;
+namespace Fox\Core;
 
-use Core\Assets\AssetsManager;
-use Core\Config\Config;
-use Core\Database\Idiorm;
-use Core\Exception\InvalidDatabaseTypeException;
-use Core\Exception\InvalidKeyException;
-use Core\Web\Router\Router;
+use Fox\Core\Assets\AssetsManager;
+use Fox\Core\Config\Config;
+use Fox\Core\Database\Idiorm;
+use Fox\Core\Exception\InvalidDatabaseTypeException;
+use Fox\Core\Exception\InvalidKeyException;
+use Fox\Core\Web\Router\Router;
 
 /**
  * Manager of all application
@@ -50,11 +50,8 @@ class App {
 	 * Load the entire application and initialize all instance
 	 */
     public static function load() {
-        require 'Autoloader.php';
-        \Core\Autoloader::register();
-
-        require __DIR__ . '/../App/Autoloader.php';
-        \App\Autoloader::register();
+        require ROOT . '\Autoloader.php';
+        \Fox\Autoloader::register();
 
         self::getRouter();
     }
@@ -76,7 +73,7 @@ class App {
 	 * @param $alias Wanted alias name
 	 *
 	 * @return mixed Value of the wanted alias
-	 * @throws \Core\Exception\InvalidKeyException
+	 * @throws \Fox\Core\Exception\InvalidKeyException
 	 */
     public static function getAlias($alias) {
 		if (!isset(self::getConfig()->get('alias')[$alias])) {
@@ -87,7 +84,7 @@ class App {
 
 	/**
 	 * Build the configuration for use
-	 * @return \Core\Application|mixed Application configuration
+	 * @return \Fox\Core\Application|mixed Application configuration
 	 */
 	public static function getConfig() {
 		if (empty(self::$_config)) {
@@ -98,7 +95,7 @@ class App {
 
 	/**
 	 * Setup the database if not setted up.
-	 * @return \Core\Application Database instance
+	 * @return \Fox\Core\Application Database instance
 	 */
 	public static function getDb() {
 		if (empty(self::$_dbInstance)) {

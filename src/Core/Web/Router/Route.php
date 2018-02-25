@@ -3,9 +3,9 @@
  * Route class
  */
 
-namespace Core\Web\Router;
+namespace Fox\Core\Web\Router;
 
-use Core\Web\Request\RequestMethod;
+use Fox\Core\Web\Request\RequestMethod;
 
 /**
  * Class Route

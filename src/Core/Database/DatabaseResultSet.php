@@ -6,10 +6,10 @@
  * Time: 00:49
  */
 
-namespace Core\Database;
+namespace Fox\Core\Database;
 
 use \ArrayIterator;
-use Core\Exception\DatabaseMethodMissingException;
+use Fox\Core\Exception\DatabaseMethodMissingException;
 use \Countable;
 
 class DatabaseResultSet implements Countable, IteratorAggregate, ArrayAccess, Serializable {
@@ -131,7 +131,7 @@ class DatabaseResultSet implements Countable, IteratorAggregate, ArrayAccess, Se
 	 * @param array  $params
 	 *
 	 * @return \IdiormResultSet
-	 * @throws \Core\Exception\DatabaseMethodMissingException
+	 * @throws \Fox\Core\Exception\DatabaseMethodMissingException
 	 */
 	public function __call($method, $params = []) {
 		foreach($this->_results as $model) {

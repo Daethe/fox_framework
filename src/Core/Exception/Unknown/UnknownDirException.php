@@ -6,7 +6,7 @@
  * Time: 22:13
  */
 
-namespace Core\Exception;
+namespace Fox\Core\Exception;
 
 use \Exception;
 

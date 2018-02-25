@@ -6,7 +6,7 @@
  * @see https://github.com/php-fig/http-message-util
  */
 
-namespace Core\Web\Request;
+namespace Fox\Core\Web\Request;
 /**
  * Defines constants for common HTTP request methods.
  *

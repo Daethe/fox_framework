@@ -6,7 +6,7 @@
  * Time: 16:35
  */
 
-namespace CoreTests\Test\Web;
+namespace FoxTests\Core\Test\Web;
 
 
 use Core\Web\Server\Server;

@@ -3,7 +3,7 @@
  * Route collection class
  */
 
-namespace Core\Web\Router;
+namespace Fox\Core\Web\Router;
 
 /**
  * Class RouteCollection

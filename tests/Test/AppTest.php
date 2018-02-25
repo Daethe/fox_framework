@@ -6,7 +6,7 @@
  * Time: 23:58
  */
 
-namespace CoreTests\Test;
+namespace FoxTests\Core\Test;
 
 use Core\App as CoreApp;
 use Core\Assets\AssetsManager as CoreAssets;

@@ -6,7 +6,7 @@
  * Time: 00:55
  */
 
-namespace Core\Exception;
+namespace Fox\Core\Exception;
 
 
 class DatabaseStringException extends \Exception {}

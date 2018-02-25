@@ -6,7 +6,7 @@
  * Time: 22:31
  */
 
-namespace Core\Exception;
+namespace Fox\Core\Exception;
 
 
 class InvalidKeyException extends \Exception {}

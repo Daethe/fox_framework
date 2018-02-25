@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Database;
+namespace Fox\Core\Database;
 
 use \PDO;
 

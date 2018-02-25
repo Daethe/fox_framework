@@ -6,7 +6,7 @@
  * Time: 00:45
  */
 
-namespace Core\Exception;
+namespace Fox\Core\Exception;
 
 
 class DatabaseMethodMissingException extends \Exception {}

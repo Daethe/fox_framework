@@ -1,9 +1,9 @@
 <?php
 
-namespace Core\Assets;
+namespace Fox\Core\Assets;
 
-use Core\Exception\InvalidKeyException;
-use Core\Web\Url;
+use Fox\Core\Exception\InvalidKeyException;
+use Fox\Core\Web\Url;
 
 class AssetsJS extends Assets {
 
@@ -33,7 +33,7 @@ class AssetsJS extends Assets {
 	 * @param string $key
 	 *
 	 * @return string
-	 * @throws \Core\Exception\InvalidKeyException
+	 * @throws \Fox\Core\Exception\InvalidKeyException
 	 */
 	public function dumpOneFile($key = 'default') {
 		if (array_key_exists($key, $this->_files)) {
@@ -47,7 +47,7 @@ class AssetsJS extends Assets {
 	 * @param string $key
 	 *
 	 * @return string
-	 * @throws \Core\Exception\InvalidKeyException
+	 * @throws \Fox\Core\Exception\InvalidKeyException
 	 */
 	public function dumpOnePlain($key = 'default') {
 		if (array_key_exists($key, $this->_plains)) {

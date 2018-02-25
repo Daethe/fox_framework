@@ -6,7 +6,7 @@
  * Time: 18:38
  */
 
-namespace CoreTests\Test\Web\Router;
+namespace FoxTests\Core\Test\Web\Router;
 
 
 use Core\Exception\InvalidArgumentException;

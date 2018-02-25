@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\Assets;
+namespace Fox\Core\Assets;
 
-use Core\Exception\InvalidAssociativeArrayException;
-use Core\Exception\UnknownDirException;
-use Core\Exception\NotAStringException;
+use Fox\Core\Exception\InvalidAssociativeArrayException;
+use Fox\Core\Exception\UnknownDirException;
+use Fox\Core\Exception\NotAStringException;
 
 class Assets {
 
@@ -28,8 +28,8 @@ class Assets {
 	 *
 	 * @param string $path Path where is stored file
 	 *
-	 * @throws \Core\Exception\NotAStringException
-	 * @throws \Core\Exception\UnknownDirException
+	 * @throws \Fox\Core\Exception\NotAStringException
+	 * @throws \Fox\Core\Exception\UnknownDirException
 	 */
 	public function __construct($path = '') {
 		if (is_string($path)) {
@@ -98,7 +98,7 @@ class Assets {
 	 * @param       $variable
 	 * @param array $content
 	 *
-	 * @throws \Core\Exception\InvalidAssociativeArrayException
+	 * @throws \Fox\Core\Exception\InvalidAssociativeArrayException
 	 */
 	private function registration($variable, $content = []) {
 		if ($this->hasStringKeys($content)) {
